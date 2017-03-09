@@ -1,7 +1,26 @@
 var http = require('http');
+var moment = require('moment');
+
 var server = http.createServer(function(req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('testing');
+  var date = moment(req.url.slice(1), ['MMMM%20D,%20YYYY', 'X'], true);
+  var data = {
+    'natural': null,
+    'unix': null
+  };
+
+  res.setHeader('Content-Type', 'application/json');
+  if (date.isValid()) {
+    res.statusCode = 200;
+    data.natural =  `${moment.months()[date.month()]} ${date.date()}, ${date.year()}`;
+    data.unix = date.unix();
+  } else {
+    res.statusCode = 400;
+    res.statusMessage = 'Invalid date. See github.com/azzang/timestamp-microservice for formatting rules.';
+  }
+
+  res.end(JSON.stringify(data, null, 3));
 });
 
 server.listen(8000);
+
+module.exports = server;
