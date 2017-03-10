@@ -5,9 +5,9 @@
 * Else, null is returned for both properties
 
 ## URL Examples
-``https://timestamp-ms.herokuapp.com/December%2015,%202015``
+``https://polar-beach-99790.herokuapp.com/December%2015,%202015``
 
-``https://timestamp-ms.herokuapp.com/1450137600``
+``https://polar-beach-99790.herokuapp.com/1450137600``
 
 _* Note: The service expects spaces in natural language dates to be percent encoded._
 
