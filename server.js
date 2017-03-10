@@ -2,7 +2,7 @@ var http = require('http');
 var moment = require('moment');
 
 var server = http.createServer(function(req, res) {
-  var date = moment(req.url.slice(1), ['MMMM%20D,%20YYYY', 'X'], true);
+  var date = moment.utc(req.url.slice(1), ['MMMM%20D,%20YYYY', 'X'], true);
   var data = {
     'natural': null,
     'unix': null
