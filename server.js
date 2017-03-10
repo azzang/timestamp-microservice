@@ -21,6 +21,6 @@ var server = http.createServer(function(req, res) {
   res.end(JSON.stringify(data, null, 3));
 });
 
-server.listen(8000);
+server.listen(process.env.PORT || 5000);
 
 module.exports = server;
