@@ -1,7 +1,6 @@
-var getRequester = require('./serviceRequester');
+const getRequester = require('./serviceRequester');
 
-describe('timestamp-microservice', function() {
-
+describe('timestamp-microservice', () => {
   it('should handle correctly formatted natural language dates',
   getRequester('/December 15, 2015', 200, 'December 15, 2015', 1450137600));
 

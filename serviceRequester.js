@@ -1,8 +1,8 @@
-var chai = require('chai');
-var chaiHttp = require('chai-http');
-var server = require('./server');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const server = require('./server');
 
-var should = chai.should();
+const should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -23,17 +23,16 @@ function confirmUniqueAssertions(res, status, natural, unix) {
 }
 
 function getEndHandler(status, done, natural, unix) {
-  return function(err, res) {
+  return (err, res) => {
     confirmBasicAssertions.call(this, res, status);
     confirmUniqueAssertions.call(this, res, status, natural, unix);
     done();
   };
 }
 
-module.exports = function(url, status, natural, unix) {
-  return function(done) {
+module.exports = (url, status, natural, unix) =>
+  (done) => {
     chai.request(server)
       .get(url)
       .end(getEndHandler(status, done, natural, unix));
-  }
-};
+  };
